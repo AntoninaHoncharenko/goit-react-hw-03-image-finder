@@ -1,10 +1,11 @@
 import { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { GlobalStyle } from '../GlobalStyles';
-import { SearchBar } from './Searchbar/Searchbar';
-import { ImageGallery } from './ImageGallery/ImageGallery';
-import { Button } from './Button/Button';
-import { fetchImages } from '../api';
+import { GlobalStyle } from '../../GlobalStyles';
+import { SearchBar } from '../Searchbar/Searchbar';
+import { ImageGallery } from '../ImageGallery/ImageGallery';
+import { Button } from '../Button/Button';
+import { fetchImages } from '../../api';
+import { AppWrap } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -15,7 +16,7 @@ export class App extends Component {
     total: 0,
   };
 
-  seachQuerry = querry => {
+  handleSubmit = querry => {
     this.setState({ querry, page: 1, total: 0, loading: true, images: [] });
   };
 
@@ -46,8 +47,8 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
-        <SearchBar onSubmit={this.seachQuerry} />
+      <AppWrap>
+        <SearchBar onSubmit={this.handleSubmit} />
         {this.state.loading && <div>Loading</div>}
         {this.state.images && <ImageGallery images={this.state.images} />}
         {this.state.total > 12 && <Button onLoadMore={this.loadMore} />}
@@ -65,7 +66,7 @@ export class App extends Component {
           theme="light"
         />
         <GlobalStyle />
-      </div>
+      </AppWrap>
     );
   }
 }

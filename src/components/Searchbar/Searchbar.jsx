@@ -1,5 +1,12 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {
+  Searchbar,
+  SearchForm,
+  SearchBtn,
+  BtnLabel,
+  Input,
+} from './Searchbar.styled';
 
 export const SearchBar = ({ onSubmit }) => {
   const handleSubmit = event => {
@@ -13,24 +20,24 @@ export const SearchBar = ({ onSubmit }) => {
     event.currentTarget.reset();
   };
   return (
-    <header>
-      <form
+    <Searchbar>
+      <SearchForm
         onSubmit={event => {
           handleSubmit(event);
         }}
       >
-        <button type="submit">
-          <span>Search</span>
-        </button>
+        <SearchBtn type="submit">
+          <BtnLabel>Search</BtnLabel>
+        </SearchBtn>
 
-        <input
+        <Input
           name="querry"
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
         />
-      </form>
-    </header>
+      </SearchForm>
+    </Searchbar>
   );
 };

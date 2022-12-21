@@ -1,9 +1,11 @@
+import { Overlay, ModalContainer, ModalImg } from './Modal.styled';
+
 export const Modal = ({ bigPic, tags }) => {
   return (
-    <div>
-      <div>
-        <img src={bigPic} alt={tags} />
-      </div>
-    </div>
+    <Overlay>
+      <ModalContainer>
+        <ModalImg src={bigPic} alt={tags} />
+      </ModalContainer>
+    </Overlay>
   );
 };
