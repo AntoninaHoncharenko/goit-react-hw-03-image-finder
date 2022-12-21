@@ -1,12 +1,12 @@
-import { Modal } from 'components/Modal/Modal';
+// import { Modal } from 'components/Modal/Modal';
 
-export const ImageGalleryItem = () => {
+export const ImageGalleryItem = ({ smallPic, tags, bigPic }) => {
   return (
     <>
       <li>
-        <img src="" alt="" />
+        <img src={smallPic} alt={tags} />
       </li>
-      <Modal />
+      {/* <Modal bigPic={bigPic} tags={tags} /> */}
     </>
   );
 };

@@ -1,8 +1,8 @@
-export const Modal = () => {
+export const Modal = ({ bigPic, tags }) => {
   return (
     <div>
       <div>
-        <img src="" alt="" />
+        <img src={bigPic} alt={tags} />
       </div>
     </div>
   );
