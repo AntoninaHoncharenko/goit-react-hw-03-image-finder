@@ -19,6 +19,5 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalImg = styled.img`
-  width: 100%;
-  height: 500px;
+  width: 800px;
 `;

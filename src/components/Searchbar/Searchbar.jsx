@@ -1,18 +1,14 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {
-  Searchbar,
-  SearchForm,
-  SearchBtn,
-  BtnLabel,
-  Input,
-} from './Searchbar.styled';
+import { BsSearch } from 'react-icons/bs';
+
+import { Searchbar, SearchForm, SearchBtn, Input } from './Searchbar.styled';
 
 export const SearchBar = ({ onSubmit }) => {
   const handleSubmit = event => {
     event.preventDefault();
     if (event.currentTarget.elements.querry.value === '') {
-      toast.error('Type a value!');
+      toast.error('Please, enter a value!');
       event.currentTarget.reset();
       return;
     }
@@ -27,7 +23,7 @@ export const SearchBar = ({ onSubmit }) => {
         }}
       >
         <SearchBtn type="submit">
-          <BtnLabel>Search</BtnLabel>
+          <BsSearch size="24" />
         </SearchBtn>
 
         <Input

@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { GlobalStyle } from '../../GlobalStyles';
 import { SearchBar } from '../Searchbar/Searchbar';
 import { ImageGallery } from '../ImageGallery/ImageGallery';
 import { Button } from '../Button/Button';
 import { fetchImages } from '../../api';
 import { AppWrap } from './App.styled';
+import { Loader } from 'components/Loader/Loader';
 
 export class App extends Component {
   state = {
@@ -17,7 +19,7 @@ export class App extends Component {
   };
 
   handleSubmit = querry => {
-    this.setState({ querry, page: 1, total: 0, loading: true, images: [] });
+    this.setState({ querry, page: 1, total: 0, images: [] });
   };
 
   loadMore = () => {
@@ -32,13 +34,21 @@ export class App extends Component {
       prevState.page !== this.state.page
     ) {
       try {
+        this.setState({ loading: true });
         const data = await fetchImages(this.state.querry, this.state.page);
+
+        if (data.hits.length < 1) {
+          toast.warning(
+            `${this.state.querry} is not defined! Please, enter other value and try again!`
+          );
+        }
+
         this.setState({
           images: [...this.state.images, ...data.hits],
           total: data.totalHits,
         });
       } catch (error) {
-        console.log(error);
+        toast.error('Something went wrong. Please, try again!');
       } finally {
         this.setState({ loading: false });
       }
@@ -46,12 +56,13 @@ export class App extends Component {
   }
 
   render() {
+    const { loading, images, total } = this.state;
     return (
       <AppWrap>
         <SearchBar onSubmit={this.handleSubmit} />
-        {this.state.loading && <div>Loading</div>}
-        {this.state.images && <ImageGallery images={this.state.images} />}
-        {this.state.total > 12 && <Button onLoadMore={this.loadMore} />}
+        {images && <ImageGallery images={images} />}
+        {loading && <Loader />}
+        {total > 12 && !loading && <Button onLoadMore={this.loadMore} />}
 
         <ToastContainer
           position="top-center"
