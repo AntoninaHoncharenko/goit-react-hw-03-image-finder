@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 // import { Overlay, ModalImg } from './Modal.styled';
 
@@ -44,4 +45,11 @@ export const ImageModal = ({ bigPic, tags, isOpen, onClose }) => {
       <img src={bigPic} alt={tags} />
     </Modal>
   );
+};
+
+ImageModal.propTypes = {
+  bigPic: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 };

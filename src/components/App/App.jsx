@@ -21,7 +21,7 @@ export class App extends Component {
   handleSubmit = querry => {
     this.setState({ querry, page: 1 });
     if (querry !== this.state.querry || this.state.page > 1) {
-      this.setState({ images: [], total: 0 });
+      this.setState({ images: [] });
     }
   };
 

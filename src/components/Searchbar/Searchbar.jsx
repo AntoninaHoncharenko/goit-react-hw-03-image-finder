@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BsSearch } from 'react-icons/bs';
@@ -36,4 +37,8 @@ export const SearchBar = ({ onSubmit }) => {
       </SearchForm>
     </Searchbar>
   );
+};
+
+SearchBar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
