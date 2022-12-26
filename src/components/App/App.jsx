@@ -46,8 +46,19 @@ export class App extends Component {
           );
         }
 
+        const images = data.hits.map(
+          ({ id, largeImageURL, tags, webformatURL }) => {
+            return {
+              id,
+              largeImageURL,
+              tags,
+              webformatURL,
+            };
+          }
+        );
+
         this.setState({
-          images: [...this.state.images, ...data.hits],
+          images: [...this.state.images, ...images],
           total: data.totalHits,
         });
       } catch (error) {
@@ -63,7 +74,7 @@ export class App extends Component {
     return (
       <AppWrap>
         <SearchBar onSubmit={this.handleSubmit} />
-        {images && <ImageGallery images={images} />}
+        {images.length > 0 && <ImageGallery images={images} />}
         {loading && <Loader />}
         {total > 12 && !loading && <Button onLoadMore={this.loadMore} />}
 
